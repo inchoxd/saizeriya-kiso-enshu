@@ -321,7 +321,7 @@
         },
         {
             "name": "alcohol",
-            "note": null
+            "note": null,
             "items": [
                 "BR01",
                 "BR02",
@@ -2188,7 +2188,7 @@
         {
             "menuId": "TP01",
             "menuName":"トッピング半熟卵",
-            "note": null
+            "note": null,
             "price": 50,
             "cal": 83000,
             "soltContent": 0.2,
@@ -2209,7 +2209,7 @@
         {
             "menuId": "TP02",
             "menuName":"ペコリーノ･ロマーノ",
-            "note": null
+            "note": null,
             "price": 100,
             "cal": 78000,
             "soltContent": 0.8,
@@ -2230,7 +2230,7 @@
         {
             "menuId": "TP04",
             "menuName":"野菜ペースト",
-            "note": null
+            "note": null,
             "price": 100,
             "cal": 72000,
             "soltContent": 0.3,
@@ -2251,7 +2251,7 @@
         {
             "menuId": "TP05",
             "menuName":"オリーブアンチョビペースト",
-            "note": null
+            "note": null,
             "price": 100,
             "cal": 97000,
             "soltContent": 0.7,
@@ -2272,7 +2272,7 @@
         {
             "menuId": "TP06",
             "menuName":"やみつきスパイス",
-            "note": null
+            "note": null,
             "price": 50,
             "cal": 6000,
             "soltContent": 1.4,
@@ -2293,7 +2293,7 @@
         {
             "menuId": "303",
             "menuName":"サイゼリヤドレッシング(500ml)",
-            "note": null
+            "note": null,
             "price": 500,
             "cal": null,
             "soltContent": null,
@@ -2314,7 +2314,7 @@
         {
             "menuId": "304",
             "menuName":"エクストラ･バージン･オリーブオイル(500ml)",
-            "note": null
+            "note": null,
             "price": 850,
             "cal": null,
             "soltContent": null,
