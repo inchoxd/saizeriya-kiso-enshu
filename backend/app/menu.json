@@ -352,8 +352,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "salad",
-            "page": [
+            "category": "salad",
+            "pages": [
                 2, 6, 8
             ]
         },
@@ -373,8 +373,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "salad",
-            "page": [
+            "category": "salad",
+            "pages": [
                 2
             ]
         },
@@ -394,8 +394,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "salad",
-            "page": [
+            "category": "salad",
+            "pages": [
                 2
             ]
         },
@@ -415,8 +415,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "salad",
-            "page": [
+            "category": "salad",
+            "pages": [
                 2
             ]
         },
@@ -436,8 +436,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "salad",
-            "page": [
+            "category": "salad",
+            "pages": [
                 2, 11
             ]
         },
@@ -457,8 +457,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "soup",
-            "page": [
+            "category": "soup",
+            "pages": [
                 3, 6, 8, 11
             ]
         },
@@ -478,8 +478,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "soup",
-            "page": [
+            "category": "soup",
+            "pages": [
                 3
             ]
         },
@@ -499,8 +499,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "soup",
-            "page": [
+            "category": "soup",
+            "pages": [
                 3
             ]
         },
@@ -520,8 +520,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "soup",
-            "page": [
+            "category": "soup",
+            "pages": [
                 3
             ]
         },
@@ -541,8 +541,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "bread",
-            "page": [
+            "category": "bread",
+            "pages": [
                 3
             ]
         },
@@ -562,8 +562,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "bread",
-            "page": [
+            "category": "bread",
+            "pages": [
                 3, 5
             ]
         },
@@ -583,8 +583,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "bread",
-            "page": [
+            "category": "bread",
+            "pages": [
                 3, 6, 8
             ]
         },
@@ -604,8 +604,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "bread",
-            "page": [
+            "category": "bread",
+            "pages": [
                 3
             ]
         },
@@ -625,8 +625,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "bread",
-            "page": [
+            "category": "bread",
+            "pages": [
                 3
             ]
         },
@@ -646,8 +646,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 5
             ]
         },
@@ -667,8 +667,8 @@
             "wSizePrice":800,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 5
             ]
         },
@@ -688,8 +688,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 5
             ]
         },
@@ -710,8 +710,8 @@
             "relation": [
                 "RP05"
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 5
             ]
         },
@@ -731,8 +731,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 5
             ]
         },
@@ -752,8 +752,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 4
             ]
         },
@@ -773,8 +773,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 5
             ]
         },
@@ -794,8 +794,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 4
             ]
         },
@@ -815,8 +815,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 2, 4
             ]
         },
@@ -836,8 +836,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 4
             ]
         },
@@ -857,8 +857,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 4
             ]
         },
@@ -878,8 +878,8 @@
             "wSizePrice":600,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 2,2,  4
             ]
         },
@@ -899,8 +899,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "appetizer",
-            "page": [
+            "category": "appetizer",
+            "pages": [
                 4
             ]
         },
@@ -920,8 +920,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 4
             ]
         },
@@ -941,8 +941,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 4
             ]
         },
@@ -962,8 +962,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 4, 11
             ]
         },
@@ -983,8 +983,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 4, 11
             ]
         },
@@ -1004,8 +1004,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 4, 11
             ]
         },
@@ -1025,8 +1025,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 4, 11
             ]
         },
@@ -1046,8 +1046,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 4
             ]
         },
@@ -1067,8 +1067,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 4
             ]
         },
@@ -1088,8 +1088,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 5
             ]
         },
@@ -1109,8 +1109,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 5
             ]
         },
@@ -1130,8 +1130,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 5
             ]
         },
@@ -1151,8 +1151,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 5
             ]
         },
@@ -1172,8 +1172,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 5
             ]
         },
@@ -1193,8 +1193,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "wine",
-            "page": [
+            "category": "wine",
+            "pages": [
                 5
             ]
         },
@@ -1214,8 +1214,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "doriaAndGratin",
-            "page": [
+            "category": "doriaAndGratin",
+            "pages": [
                 6
             ]
         },
@@ -1235,8 +1235,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "doriaAndGratin",
-            "page": [
+            "category": "doriaAndGratin",
+            "pages": [
                 6
             ]
         },
@@ -1256,8 +1256,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "doriaAndGratin",
-            "page": [
+            "category": "doriaAndGratin",
+            "pages": [
                 6
             ]
         },
@@ -1277,8 +1277,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "doriaAndGratin",
-            "page": [
+            "category": "doriaAndGratin",
+            "pages": [
                 6
             ]
         },
@@ -1298,8 +1298,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "doriaAndGratin",
-            "page": [
+            "category": "doriaAndGratin",
+            "pages": [
                 6
             ]
         },
@@ -1319,8 +1319,8 @@
             "wSizePrice":500,
             "relation": [
             ],
-            "categories": "pizza",
-            "page": [
+            "category": "pizza",
+            "pages": [
                 7
             ]
         },
@@ -1340,8 +1340,8 @@
             "wSizePrice":600,
             "relation": [
             ],
-            "categories": "pizza",
-            "page": [
+            "category": "pizza",
+            "pages": [
                 7
             ]
         },
@@ -1361,8 +1361,8 @@
             "wSizePrice":500,
             "relation": [
             ],
-            "categories": "pizza",
-            "page": [
+            "category": "pizza",
+            "pages": [
                 7
             ]
         },
@@ -1382,8 +1382,8 @@
             "wSizePrice":600,
             "relation": [
             ],
-            "categories": "pizza",
-            "page": [
+            "category": "pizza",
+            "pages": [
                 7
             ]
         },
@@ -1403,8 +1403,8 @@
             "wSizePrice":600,
             "relation": [
             ],
-            "categories": "pizza",
-            "page": [
+            "category": "pizza",
+            "pages": [
                 7
             ]
         },
@@ -1424,8 +1424,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 8
             ]
         },
@@ -1445,8 +1445,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 8
             ]
         },
@@ -1466,8 +1466,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 9
             ]
         },
@@ -1487,8 +1487,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 9
             ]
         },
@@ -1508,8 +1508,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 8
             ]
         },
@@ -1529,8 +1529,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 9
             ]
         },
@@ -1550,8 +1550,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 8
             ]
         },
@@ -1571,8 +1571,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 9
             ]
         },
@@ -1592,8 +1592,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 9
             ]
         },
@@ -1613,8 +1613,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 9
             ]
         },
@@ -1634,8 +1634,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 9
             ]
         },
@@ -1655,8 +1655,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 9
             ]
         },
@@ -1676,8 +1676,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 9
             ]
         },
@@ -1697,8 +1697,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 8
             ]
         },
@@ -1718,8 +1718,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "pasta",
-            "page": [
+            "category": "pasta",
+            "pages": [
                 8
             ]
         },
@@ -1739,8 +1739,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "hamburgSteak",
-            "page": [
+            "category": "hamburgSteak",
+            "pages": [
                 10
             ]
         },
@@ -1760,8 +1760,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "hamburgSteak",
-            "page": [
+            "category": "hamburgSteak",
+            "pages": [
                 10
             ]
         },
@@ -1781,8 +1781,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "hamburgSteak",
-            "page": [
+            "category": "hamburgSteak",
+            "pages": [
                 10
             ]
         },
@@ -1802,8 +1802,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "hamburgSteak",
-            "page": [
+            "category": "hamburgSteak",
+            "pages": [
                 10
             ]
         },
@@ -1823,8 +1823,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "hamburgSteak",
-            "page": [
+            "category": "hamburgSteak",
+            "pages": [
                 10
             ]
         },
@@ -1844,8 +1844,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "hamburgSteak",
-            "page": [
+            "category": "hamburgSteak",
+            "pages": [
                 10
             ]
         },
@@ -1865,8 +1865,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "hamburgSteak",
-            "page": [
+            "category": "hamburgSteak",
+            "pages": [
                 10
             ]
         },
@@ -1886,8 +1886,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "chicken",
-            "page": [
+            "category": "chicken",
+            "pages": [
                 11
             ]
         },
@@ -1907,8 +1907,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "chicken",
-            "page": [
+            "category": "chicken",
+            "pages": [
                 11
             ]
         },
@@ -1928,8 +1928,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "chicken",
-            "page": [
+            "category": "chicken",
+            "pages": [
                 11
             ]
         },
@@ -1949,8 +1949,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -1970,8 +1970,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -1991,8 +1991,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -2012,8 +2012,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -2033,8 +2033,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -2054,8 +2054,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -2075,8 +2075,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -2096,8 +2096,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -2117,8 +2117,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -2138,8 +2138,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "drinkBar",
-            "page": [
+            "category": "drinkBar",
+            "pages": [
                 3, 5, 7, 12
             ]
         },
@@ -2159,8 +2159,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "drinkBar",
-            "page": [
+            "category": "drinkBar",
+            "pages": [
                 3, 5, 7, 12
             ]
         },
@@ -2180,8 +2180,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "drinkBar",
-            "page": [
+            "category": "drinkBar",
+            "pages": [
                 3, 5, 7, 12
             ]
         },
@@ -2201,8 +2201,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "topping",
-            "page": [
+            "category": "topping",
+            "pages": [
                 9
             ]
         },
@@ -2222,8 +2222,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "topping",
-            "page": [
+            "category": "topping",
+            "pages": [
                 2, 9
             ]
         },
@@ -2243,8 +2243,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "topping",
-            "page": [
+            "category": "topping",
+            "pages": [
                 10
             ]
         },
@@ -2264,8 +2264,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "topping",
-            "page": [
+            "category": "topping",
+            "pages": [
                 2
             ]
         },
@@ -2285,8 +2285,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "topping",
-            "page": [
+            "category": "topping",
+            "pages": [
                 4
             ]
         },
@@ -2306,8 +2306,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "topping",
-            "page": [
+            "category": "topping",
+            "pages": [
                 2
             ]
         },
@@ -2327,8 +2327,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "topping",
-            "page": [
+            "category": "topping",
+            "pages": [
                 2
             ]
         },
@@ -2348,8 +2348,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "dessert",
-            "page": [
+            "category": "dessert",
+            "pages": [
                 12
             ]
         },
@@ -2369,8 +2369,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "alcohol",
-            "page": [
+            "category": "alcohol",
+            "pages": [
                 5, 11
             ]
         },
@@ -2390,8 +2390,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "alcohol",
-            "page": [
+            "category": "alcohol",
+            "pages": [
                 5
             ]
         },
@@ -2411,8 +2411,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "alcohol",
-            "page": [
+            "category": "alcohol",
+            "pages": [
                 5
             ]
         },
@@ -2432,8 +2432,8 @@
             "wSizePrice":null,
             "relation": [
             ],
-            "categories": "alcohol",
-            "page": [
+            "category": "alcohol",
+            "pages": [
                 5
             ]
         }
