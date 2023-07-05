@@ -20,14 +20,8 @@ proc = Proc()
 #
 ##################################################
 @app.get('/quiz')
-async def gen_quiz(mode:int, session_id: str):
+async def gen_quiz(mode:int):
     if not is_session:
-        # 400を返す
-        raise HTTPException(
-                status_code=400,
-                detail='invalid error'
-                )
-    else:
         return quiz_data
 
 
