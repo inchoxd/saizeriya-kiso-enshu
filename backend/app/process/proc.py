@@ -1,5 +1,6 @@
 import os
 import json
+import random
 from uuid import uuid4 as uuid
 from dotenv import load_dotenv
 from datetime import time as tm
@@ -197,3 +198,56 @@ class Proc:
         """
         categ_info = self.db.get_categ_info(categ)
         return categ_info
+
+
+    def _gen_qiz_from_categ(self, categs:list, num_of_q:int) -> list:
+        li_menu_id = self.get_menu_id_from_some_categ(categs)
+        len_li_mid = len(li_menu_id)
+        if num_of_q >= len_li_mid:
+            return {}
+        if num_of_q <= 1:
+            num_of_q = len_li_mid
+
+        quiz_data = []
+        li_ans_mid = []
+        questions = random.sample(li_menu_id, num_of_q)
+        for i in range(num_of_q):
+            li_ans_mid.append(questions[i])
+            tmp_li_ans_mid = questions.copy()
+            tmp_li_ans_mid.pop(i)
+            li_ans_mid = random.sample(tmp_li_ans_mid, 3)
+            li_ans_mid.insert(random.randrange(4), questions[i])
+            answers = [ menu_data['menu_name'] for menu_data in self.get_some_item_info(li_ans_mid)]
+            question = {
+                    'question':questions[i],
+                    'answers': answers
+                    }
+            quiz_data.append(question)
+            tmp_li_ans_mid.clear()
+            li_ans_mid.clear()
+
+        return quiz_data
+
+
+    def gen_quiz(self, mode:int, uid="", categs:list=[], pages:list=[], num_of_q:int=0) -> dict:
+        """
+        モードに応じてクイズを生成します．
+        カテゴリーやページは複数選択可能です．
+        """
+        if mode == 0 and categs:
+            pass
+        elif mode == 1 and pages:
+            pass
+        else:
+            return {}
+
+        if uid == "":
+            uid = uuid()
+
+
+    def check_ans(self, quiz_id:str) -> dict:
+        """
+        回答を確認し，ポイントを集計します．
+        回答したした結果を辞書で返却します．
+        """
+        pass
