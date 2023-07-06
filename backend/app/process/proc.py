@@ -1,5 +1,6 @@
 import os
 import json
+import random
 from uuid import uuid4 as uuid
 from dotenv import load_dotenv
 from datetime import time as tm
@@ -20,122 +21,6 @@ class Proc:
             menu_data = json.load(f)
 
         return menu_data
-
-
-    def register_categ(self, categs:list) -> None:
-        categs = self._open_json()['categories']
-        for categ in categs:
-            name = categ['name']
-            note = categ['note']
-            pages = categ['pages']
-            if not note:
-                note = '-'
-            relation = categ['relation']
-            categ_info = {
-                    'name':name,
-                    'note':note
-                    }
-            self.db.register_category(categ_info)
-            for menu_id in relation:
-                relation_data = {
-                        'name':name,
-                        'menu_id':menu_id
-                        }
-                self.db.register_categ_relation(relation_data)
-            for page in pages:
-                page_data = {
-                        'name':name,
-                        'page':page
-                        }
-                self.db.register_categ_page(page_data)
-    
-    
-    def register_items(self, items:list) -> None:
-        items = self._open_json()['items']
-        for item in items:
-            menu_id = item['menuId']
-            menu_name = item['menuName']
-            note = item['note']
-            price = item['price']
-            cal = item['cal']
-            solt_content = item['soltContent']
-            hot = item['hot']
-            size = item['size']
-            new = item['new']
-            seasonal = item['seasonal']
-            popular = item['popular']
-            wsize = item['wSize']
-            wsize_price = item['wSizePrice']
-            relation = item['relation']
-            categories = item['categories']
-            pages = item['pages']
-            is_cal = True
-            is_solt = True
-            is_size = False
-            is_wsize = False
-            is_relation = False
-            if not note:
-                note = '-'
-            if not cal:
-                is_cal = False
-            if not solt_content:
-                is_solt = False
-            if size:
-                is_size = True
-            if wsize:
-                is_wsize = True
-            if is_relation:
-                is_relation = True
-            menu_data = {
-                    'menu_id':menu_id,
-                    'menu_name':menu_name,
-                    'note':note,
-                    'price':price,
-                    'hot':hot,
-                    'new':new,
-                    'seasonal':seasonal,
-                    'popular':popular,
-                    'categories':categories,
-                    'is_cal':is_cal,
-                    'is_solt':is_solt,
-                    'is_size':is_size,
-                    'is_wsize':is_wsize,
-                    'is_relation':is_relation
-                    }
-            self.db.register_item_info(menu_data)
-            if is_cal and is_size:
-                cal_solt_data = {
-                        'menu_id':menu_id,
-                        'cal':cal,
-                        'solt_content':solt_content
-                        }
-                self.db.register_item_cal_solt(cal_solt_data)
-            if is_size:
-                size_data = {
-                        'menu_id':menu_id,
-                        'size':size
-                        }
-                self.db.register_item_size(size_data)
-            if is_wsize:
-                wsize_data = {
-                        'menu_id':menu_id,
-                        'wsize_menu_id':wsize,
-                        'wsize_price':wsize_price
-                        }
-                self.db.register_item_wsize(wsize_data)
-            if is_relation:
-                for r_menu_id in relation:
-                    relation_data = {
-                            'menu_id':menu_id,
-                            'relaiton_menu_id':r_menu_id
-                            }
-                    self.db.register_item_relation(relation_data)
-            for page in pages:
-                page_data = {
-                        'menu_id':menu_id,
-                        'page':page
-                        }
-                self.db.register_item_page(page_data)
 
 
     def get_item_info(self, menu_id:str) -> dict:
@@ -175,6 +60,14 @@ class Proc:
         return li_menu_id
 
 
+    def get_menu_id_from_menu_name(self, li_name:list) -> list:
+        """
+        料理名からメニュー番号の一覧を返却します
+        """
+        li_menu_id = self.db.get_menu_id_from_menu_name(li_name)
+        return li_menu_id
+
+
     def get_menu_id_from_some_categ(self, li_categ:list) -> list:
         """
         指定したカテゴリのメニュー番号の一覧を返却します
@@ -197,3 +90,62 @@ class Proc:
         """
         categ_info = self.db.get_categ_info(categ)
         return categ_info
+
+
+    def _gen_qiz_from_categ(self, categs:list, num_of_q:int) -> list:
+        li_menu_id = self.get_menu_id_from_some_categ(categs)
+        len_li_mid = len(li_menu_id)
+        if num_of_q >= len_li_mid:
+            return {}
+        if num_of_q < 1:
+            num_of_q = len_li_mid
+
+        quiz_data = []
+        li_ans_mid = []
+        questions = random.sample(li_menu_id, num_of_q)
+        for i in range(num_of_q):
+            li_ans_mid.append(questions[i])
+            tmp_li_ans_mid = questions.copy()
+            tmp_li_ans_mid.pop(i)
+            li_ans_mid = random.sample(tmp_li_ans_mid, 3)
+            li_ans_mid.insert(random.randrange(4), questions[i])
+            answers = [ menu_data['menu_name'] for menu_data in self.get_some_item_info(li_ans_mid) ]
+            question = {
+                    'question':questions[i],
+                    'points':self.get_item_info(questions[i])['price'],
+                    'answers':answers
+                    }
+            quiz_data.append(question)
+            tmp_li_ans_mid.clear()
+            li_ans_mid.clear()
+
+        return quiz_data
+
+
+    def gen_quiz(self, mode:int, uid="", categs:list=[], pages:list=[], num_of_q:int=0) -> dict:
+        """
+        モードに応じてクイズを生成します．
+        カテゴリーやページは複数選択可能です．
+        """
+        if mode == 0 and categs:
+            quiz_data = self._gen_qiz_from_categ(categs, num_of_q)
+        elif mode == 1 and pages:
+            pass
+        else:
+            return {}
+
+        if num_of_q < 1:
+            num_of_q = len(quiz_data)
+
+        max_points = sum([ question_data['points'] for question_data in quiz_data ])
+
+        if uid == "":
+            uid = uuid()
+
+
+    def check_ans(self, quiz_id:str) -> dict:
+        """
+        回答を確認し，ポイントを集計します．
+        回答したした結果を辞書で返却します．
+        """
+        pass
