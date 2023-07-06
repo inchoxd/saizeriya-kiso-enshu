@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 from uuid import uuid4
 
 from sqlalchemy import create_engine, func
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey, Boolean
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.exc import *
 
@@ -91,19 +91,7 @@ class Categories(Base):
     created_at = Column(DateTime)                               # 作成日時
     updated_at = Column(DateTime)                               # 更新日時
 
-    r_relation = relationship('CategsRelation', backref='categories')
     r_pages = relationship('CategsPage', backref='categories')
-
-
-class CategsRelation(Base):
-    __tablename__ = 'categories_relation'
-    __table_args__=({"mysql_charset": "utf8mb4"})
-
-    relation_id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(32), ForeignKey('categories.name'))    # カテゴリ名
-    menu_id = Column(String(4))                                 # メニュー番号
-    created_at = Column(DateTime)                               # 作成日時
-    updated_at = Column(DateTime)                               # 更新日時
 
 
 class CategsPage(Base):
@@ -129,18 +117,16 @@ class Items(Base):
     new = Column(Boolean)                                       # 新商品
     seasonal = Column(Boolean)                                  # 季節商品
     popular = Column(Boolean)                                   # 人気商品
-    category = Column(String(32))                             # カテゴリ
+    category = Column(String(32))                               # カテゴリ
     is_size = Column(Boolean)                                   # 容量に関するデータを含むか
     is_cal = Column(Boolean)                                    # カロリーの情報が含まれているか
     is_solt = Column(Boolean)                                   # 塩分情報が含まれているか
-    is_wsize = Column(Boolean)                                  # サイズアップ可能か
     is_relation = Column(Boolean)                               # 関連メニューがあるか
     created_at = Column(DateTime)                               # 作成日時
     updated_at = Column(DateTime)                               # 更新日時
 
     r_cal_solt = relationship('ItemsCalSolt', backref='items')
     r_cal_solt = relationship('ItemsSize', backref='items')
-    r_cal_solt = relationship('ItemsWsize', backref='items')
     r_cal_solt = relationship('ItemsRelation', backref='items')
     r_cal_solt = relationship('ItemsPage', backref='items')
 
@@ -164,18 +150,6 @@ class ItemsSize(Base):
     size_id = Column(Integer, primary_key=True, autoincrement=True)
     menu_id = Column(String(4), ForeignKey('items.menu_id'))    # メニュー番号
     size = Column(Integer)                                      # 容量[ml]
-    created_at = Column(DateTime)                               # 作成日時
-    updated_at = Column(DateTime)                               # 更新日時
-
-
-class ItemsWsize(Base):
-    __tablename__ = 'items_wsize'
-    __table_args__=({"mysql_charset": "utf8mb4"})
-
-    wsize_id = Column(Integer, primary_key=True, autoincrement=True)
-    menu_id = Column(String(4), ForeignKey('items.menu_id'))    # メニュー番号
-    wsize_menu_id = Column(String(4))                           # サイズアップ後のメニュー番号
-    wsize_price = Column(Integer)                               # サイズアップ後の価格
     created_at = Column(DateTime)                               # 作成日時
     updated_at = Column(DateTime)                               # 更新日時
 
@@ -255,19 +229,6 @@ class DB:
         return True
 
 
-    def register_categ_relation(self, relation_data:dict) -> bool:
-        name = relation_data['name']
-        menu_id = relation_data['menu_id']
-        created_at = dt.now()
-        categ = CategsRelation(name=name, menu_id=menu_id, created_at=created_at, updated_at=created_at)
-        session = self.Session()
-        session.add(categ)
-        session.commit()
-        session.close()
-
-        return True
-
-
     def register_categ_page(self, page_data:dict) -> bool:
         name = page_data['name']
         page = page_data['page']
@@ -297,10 +258,9 @@ class DB:
         is_cal = menu_data['is_cal']
         is_solt = menu_data['is_solt']
         is_size = menu_data['is_size']
-        is_wsize = menu_data['is_wsize']
         is_relation = menu_data['is_relation']
         created_at = dt.now()
-        menu = Items(menu_id=menu_id, menu_name=menu_name, note=note, price=price, is_cal=is_cal, is_solt=is_solt, hot=hot, is_size=is_size, new=new, seasonal=seasonal, popular=popular, is_wsize=is_wsize, category=category, is_relation=is_relation, created_at=created_at, updated_at=created_at)
+        menu = Items(menu_id=menu_id, menu_name=menu_name, note=note, price=price, is_cal=is_cal, is_solt=is_solt, hot=hot, is_size=is_size, new=new, seasonal=seasonal, popular=popular, category=category, is_relation=is_relation, created_at=created_at, updated_at=created_at)
         session = self.Session()
         session.add(menu)
         session.commit()
@@ -328,20 +288,6 @@ class DB:
         size = size_data['size']
         created_at = dt.now()
         menu = ItemsSize(menu_id=menu_id, size=size, created_at=created_at, updated_at=created_at)
-        session = self.Session()
-        session.add(menu)
-        session.commit()
-        session.close()
-
-        return True
-
-
-    def register_item_wsize(self, wsize_data:dict) -> bool:
-        menu_id = wsize_data['menu_id']
-        wsize_menu_id = wsize_data['wsize_menu_id']
-        wsize_price = wsize_data['wsize_price']
-        created_at = dt.now()
-        menu = ItemsWsize(menu_id=menu_id, wsize_menu_id=wsize_menu_id, wsize_price=wsize_price, created_at=created_at, updated_at=created_at)
         session = self.Session()
         session.add(menu)
         session.commit()
@@ -386,7 +332,6 @@ class DB:
             'is_cal':bool,
             'is_solt:bool.
             'is_size':bool,
-            'is_wsize',bool,
             'is_relation':bool
             }
         """
@@ -405,13 +350,6 @@ class DB:
                 size = size_info.size
             else:
                 size = None
-            if sub_info_flg['is_wsize']:
-                wsize_info = session.query(ItemsWsize).filter_by(menu_id=menu_id).one()
-                wsize = wsize_info.wsize_menu_id
-                wsize_price = wsize_info.wsize_price
-            else:
-                wsize = None
-                wsize_price = None
             if sub_info_flg['is_relation']:
                 relaitons_info = session.query(ItemsRelation).filter_by(menu_id=menu_id).all()
                 relations = [ relation_info.relation_menu_id for relation_info in relaitons_info ]
@@ -430,8 +368,6 @@ class DB:
                     'cal':cal,
                     'solt_content':solt_content,
                     'size':size,
-                    'wsize':wsize,
-                    'wsize_price':wsize_price,
                     'relations':relations,
                     'pages':pages
                     } 
@@ -448,7 +384,6 @@ class DB:
                     'is_cal':base_data.is_cal,
                     'is_solt':base_data.is_solt,
                     'is_size':base_data.is_size,
-                    'is_wsize':base_data.is_wsize,
                     'is_relation':base_data.is_relation
                     }
 
@@ -469,8 +404,6 @@ class DB:
                     'new':base_data.new,
                     'seasonal':base_data.seasonal,
                     'popular':base_data.popular,
-                    'wsize':sub_data['wsize'],
-                    'wsize_price':sub_data['wsize_price'],
                     'relations':sub_data['relations'],
                     'category':base_data.category,
                     'pages':sub_data['pages']
@@ -487,7 +420,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             items_info = []
             for base_data in bases_data:
                 sub_data_flg = {
@@ -495,7 +428,6 @@ class DB:
                         'is_cal':base_data.is_cal,
                         'is_solt':base_data.is_solt,
                         'is_size':base_data.is_size,
-                        'is_wsize':base_data.is_wsize,
                         'is_relation':base_data.is_relation
                         }
     
@@ -512,8 +444,6 @@ class DB:
                         'new':base_data.new,
                         'seasonal':base_data.seasonal,
                         'popular':base_data.popular,
-                        'wsize':sub_data['wsize'],
-                        'wsize_price':sub_data['wsize_price'],
                         'relations':sub_data['relations'],
                         'category':base_data.category,
                         'pages':sub_data['pages']
@@ -553,6 +483,23 @@ class DB:
             return {}
         else:
             li_menu_id = [ page_data.menu_id for page_data in pages_data ]
+
+        return li_menu_id
+
+
+    def get_menu_id_from_menu_name(self, li_name:list) -> list:
+        """
+        料理名からメニュー番号の一覧を返却します
+        """
+        session = self.Session()
+        try:
+            menus_data = session.query(Items).filter_by(menu_name=menu_name).all()
+            
+            session.close()
+        except NoResultFound:
+            return {}
+        else:
+            li_menu_id = [ menu_data[menu_id] for menu_data in menus_data ]
 
         return li_menu_id
 
