@@ -22,7 +22,6 @@ class Session(Base):
     session_id = Column(String(36), primary_key=True)           # 一意のユーザ管理ID
     uid = Column(String(36))                                    # 一意のユーザ管理ID
     mode = Column(Integer)                                      # クイズのモード(0: menu_idを答える, 1: 料理名を答える)
-    points = Column(Integer)                                    # 点数
     created_at = Column(DateTime)                               # 作成日時
     updated_at = Column(DateTime)                               # 更新日時
     exp = Column(DateTime)                                      # 有効期限
