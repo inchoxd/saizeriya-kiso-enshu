@@ -40,18 +40,21 @@ class QuizLogs(Base):
     created_at = Column(DateTime)                               # 作成日時
     updated_at = Column(DateTime)                               # 更新日時
 
-    r_quizlogs_ans_info = relationship('QuizLogsAnsInfo', backref='quizlogs')
+    r_quizlogs_ans_info = relationship('ResultQuizLogs', backref='quizlogs')
     r_questionlogs = relationship('QuestionLogs', backref='quizlogs')
     r_answerlogs = relationship('AnswerLogs', backref='quizlogs')
 
 
-class QuizLogsAnsInfo(Base):
-    __tablename__ = 'quizlogs_ans_info'
+class ResultQuizLogs(Base):
+    __tablename__ = 'result_quiz_logs'
     __table_args__=({"mysql_charset": "utf8mb4"})
 
-    quiz_id = Column(String(36), ForeignKey('quizlogs.quiz_id'), primary_key=True)
+    result_id = Column(String(36),primary_key=True)             # 結果識別ID
+    quiz_id = Column(String(36), ForeignKey('quizlogs.quiz_id'))
     corrects_num = Column(Integer)                              # 正解した数
     ttl_points = Column(Integer)                                # 獲得したポイントの合計点数
+    created_at = Column(DateTime)                               # 作成日時
+    updated_at = Column(DateTime)                               # 更新日時
 
 
 class QuestionLogs(Base):
