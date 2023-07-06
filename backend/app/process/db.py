@@ -521,7 +521,7 @@ class DB:
             return li_menu_id
 
 
-    def get_menu_id_from_some_categ(self, li_categ:list) -> list:
+    def get_some_menu_id_from_categ(self, li_categ:list) -> list:
         """
         指定したカテゴリのメニュー番号の一覧を返却します
         """
