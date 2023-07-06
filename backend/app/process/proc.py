@@ -92,7 +92,11 @@ class Proc:
         return categ_info
 
 
-    def _gen_qiz_from_categ(self, mode:int, li_q_data:list, num_of_q:int) -> list:
+    def register_quiz_logs(self, session_id, mode, uid=""):
+        pass
+
+
+    def _gen_questions(self, mode:int, li_q_data:list, num_of_q:int) -> list:
         if mode == 0:
             li_menu_id = self.get_some_menu_id_from_categ(li_q_data)
         elif mode == 1:
@@ -119,7 +123,7 @@ class Proc:
             tmp_li_ans_mid.remove(q)
             li_ans_mid = random.sample(tmp_li_ans_mid, 3)
             li_ans_mid.insert(random.randrange(4), q)
-            answers = [ menu_data['menu_name'] for menu_data in self.get_some_item_info(li_ans_mid) ]
+            answers = [ self.get_item_info(li_ans_mid[ans_num])['menu_name'] for ans_num in range(len(li_ans_mid)) ]
             created_at = dt.now()
             question_id = str(uuid())
             question = {
@@ -141,7 +145,7 @@ class Proc:
         カテゴリーやページは複数選択可能です．
         """
         if mode == 0 and categs:
-            questions = self._gen_qiz_from_categ(mode, categs, num_of_q)
+            questions = self._gen_questions(mode, categs, num_of_q)
         elif mode == 1 and pages:
             questions = self._gen_qiz_from_categ(mode, pages, num_of_q)
         else:
@@ -166,13 +170,17 @@ class Proc:
         pass
 
 
-    def register_quiz_logs(self, session_id, mode, uid=""):
-        pass
-
-
-    def check_ans(self, quiz_id:str) -> dict:
+    def register_result(self, quiz_id:str) -> dict:
         """
         回答を確認し，ポイントを集計します．
         回答したした結果を辞書で返却します．
         """
-        pass
+        rst = {
+                'result_id':None,
+                'quiz_id':None,
+                'corrects_num':None,
+                'in_corrects_num':None,
+                'ttl_points':None
+                }
+
+        return rst
