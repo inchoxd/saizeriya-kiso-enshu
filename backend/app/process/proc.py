@@ -68,11 +68,11 @@ class Proc:
         return li_menu_id
 
 
-    def get_menu_id_from_some_categ(self, li_categ:list) -> list:
+    def get_some_menu_id_from_categ(self, li_categ:list) -> list:
         """
         指定したカテゴリのメニュー番号の一覧を返却します
         """
-        li_menu_id = self.db.get_menu_id_from_some_categ(li_categ)
+        li_menu_id = self.db.get_some_menu_id_from_categ(li_categ)
         return li_menu_id
 
 
@@ -93,7 +93,37 @@ class Proc:
 
 
     def _gen_qiz_from_categ(self, categs:list, num_of_q:int) -> list:
-        li_menu_id = self.get_menu_id_from_some_categ(categs)
+        li_menu_id = self.get_some_menu_id_from_categ(categs)
+        len_li_mid = len(li_menu_id)
+        if num_of_q >= len_li_mid:
+            return {}
+        if num_of_q < 1:
+            num_of_q = len_li_mid
+
+        quiz_data = []
+        li_ans_mid = []
+        questions = random.sample(li_menu_id, num_of_q)
+        for i in range(num_of_q):
+            li_ans_mid.append(questions[i])
+            tmp_li_ans_mid = questions.copy()
+            tmp_li_ans_mid.pop(i)
+            li_ans_mid = random.sample(tmp_li_ans_mid, 3)
+            li_ans_mid.insert(random.randrange(4), questions[i])
+            answers = [ menu_data['menu_name'] for menu_data in self.get_some_item_info(li_ans_mid) ]
+            question = {
+                    'question':questions[i],
+                    'points':self.get_item_info(questions[i])['price'],
+                    'answers':answers
+                    }
+            quiz_data.append(question)
+            tmp_li_ans_mid.clear()
+            li_ans_mid.clear()
+
+        return quiz_data
+
+
+    def _gen_qiz_from_page(self, pages:list, num_of_q:int) -> list:
+        li_menu_id = self.get_some_menu_id_from_page(pages)
         len_li_mid = len(li_menu_id)
         if num_of_q >= len_li_mid:
             return {}
