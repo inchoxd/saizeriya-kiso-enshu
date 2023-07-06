@@ -92,8 +92,17 @@ class Proc:
         return categ_info
 
 
-    def _gen_qiz_from_categ(self, categs:list, num_of_q:int) -> list:
-        li_menu_id = self.get_some_menu_id_from_categ(categs)
+    def _gen_qiz_from_categ(self, mode:int, li_q_data:list, num_of_q:int) -> list:
+        if mode == 0:
+            li_menu_id = self.get_some_menu_id_from_categ(li_q_data)
+        elif mode == 1:
+            li_menu_id = self.get_some_menu_id_from_page(li_q_data)
+        else:
+            return {}
+
+        if not li_menu_id:
+            return {}
+
         len_li_mid = len(li_menu_id)
         if num_of_q >= len_li_mid:
             return {}
@@ -103,16 +112,20 @@ class Proc:
         quiz_data = []
         li_ans_mid = []
         questions = random.sample(li_menu_id, num_of_q)
-        for i in range(num_of_q):
-            li_ans_mid.append(questions[i])
-            tmp_li_ans_mid = questions.copy()
-            tmp_li_ans_mid.pop(i)
+        for q_num in range(num_of_q):
+            q = questions[q_num]
+            li_ans_mid.append(q)
+            tmp_li_ans_mid = li_menu_id.copy()
+            tmp_li_ans_mid.remove(q)
             li_ans_mid = random.sample(tmp_li_ans_mid, 3)
-            li_ans_mid.insert(random.randrange(4), questions[i])
+            li_ans_mid.insert(random.randrange(4), q)
             answers = [ menu_data['menu_name'] for menu_data in self.get_some_item_info(li_ans_mid) ]
+            created_at = dt.now()
+            question_id = str(uuid())
             question = {
-                    'question':questions[i],
-                    'points':self.get_item_info(questions[i])['price'],
+                    'question_id':question_id,
+                    'question':q,
+                    'points':self.get_item_info(questions[q_num])['price'],
                     'answers':answers
                     }
             quiz_data.append(question)
@@ -122,55 +135,39 @@ class Proc:
         return quiz_data
 
 
-    def _gen_qiz_from_page(self, pages:list, num_of_q:int) -> list:
-        li_menu_id = self.get_some_menu_id_from_page(pages)
-        len_li_mid = len(li_menu_id)
-        if num_of_q >= len_li_mid:
-            return {}
-        if num_of_q < 1:
-            num_of_q = len_li_mid
-
-        quiz_data = []
-        li_ans_mid = []
-        questions = random.sample(li_menu_id, num_of_q)
-        for i in range(num_of_q):
-            li_ans_mid.append(questions[i])
-            tmp_li_ans_mid = questions.copy()
-            tmp_li_ans_mid.pop(i)
-            li_ans_mid = random.sample(tmp_li_ans_mid, 3)
-            li_ans_mid.insert(random.randrange(4), questions[i])
-            answers = [ menu_data['menu_name'] for menu_data in self.get_some_item_info(li_ans_mid) ]
-            question = {
-                    'question':questions[i],
-                    'points':self.get_item_info(questions[i])['price'],
-                    'answers':answers
-                    }
-            quiz_data.append(question)
-            tmp_li_ans_mid.clear()
-            li_ans_mid.clear()
-
-        return quiz_data
-
-
-    def gen_quiz(self, mode:int, uid="", categs:list=[], pages:list=[], num_of_q:int=0) -> dict:
+    def gen_quiz(self, mode:int, categs:list=[], pages:list=[], num_of_q:int=0) -> dict:
         """
         モードに応じてクイズを生成します．
         カテゴリーやページは複数選択可能です．
         """
         if mode == 0 and categs:
-            quiz_data = self._gen_qiz_from_categ(categs, num_of_q)
+            questions = self._gen_qiz_from_categ(mode, categs, num_of_q)
         elif mode == 1 and pages:
-            pass
+            questions = self._gen_qiz_from_categ(mode, pages, num_of_q)
         else:
             return {}
+        
+        if num_of_q > 1:
+            num_of_q = len(questions)
 
-        if num_of_q < 1:
-            num_of_q = len(quiz_data)
+        max_points = sum([ question_data['points'] for question_data in questions ])
 
-        max_points = sum([ question_data['points'] for question_data in quiz_data ])
+        quiz_data = {
+                'quiz_id':None,
+                'mode':0,
+                'num_of_q':num_of_q,
+                'questions':questions
+                }
 
-        if uid == "":
-            uid = uuid()
+        return quiz_data
+
+
+    def _check_ans(self, ans_data:list) -> dict:
+        pass
+
+
+    def register_quiz_logs(self, session_id, mode, uid=""):
+        pass
 
 
     def check_ans(self, quiz_id:str) -> dict:
