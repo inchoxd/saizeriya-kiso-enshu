@@ -34,8 +34,6 @@ class QuizLogs(Base):
     quiz_id = Column(String(36), primary_key=True)              # クイズ識別ID
     uid = Column(String(36))                                    # 一意のユーザ管理ID
     mode = Column(Integer)                                      # クイズのモード(0: menu_idを答える, 1: 料理名を答える)
-    num_of_q = Column(Integer)                                  # 出題数
-    max_points = Column(Integer)                                # 獲得できる最大のポイント
     created_at = Column(DateTime)                               # 作成日時
     updated_at = Column(DateTime)                               # 更新日時
 
@@ -50,6 +48,8 @@ class ResultQuizLogs(Base):
 
     result_id = Column(String(36),primary_key=True)             # 結果識別ID
     quiz_id = Column(String(36), ForeignKey('quizlogs.quiz_id'))
+    num_of_q = Column(Integer)                                  # 出題数
+    max_points = Column(Integer)                                # 獲得できる最大のポイント
     corrects_num = Column(Integer)                              # 正解した数
     ttl_points = Column(Integer)                                # 獲得したポイントの合計点数
     created_at = Column(DateTime)                               # 作成日時
@@ -327,11 +327,11 @@ class DB:
     ##################################################
     # 出題・回答登録，取得
     ##################################################
-    def create_quiz(self, uid:str, mode:int, num_of_q:int, max_points:int) -> str:
+    def create_quiz(self, uid:str, mode:int) -> str:
         quiz_id = str(uuid())
         created_at = dt.now()
         session = self.Session()
-        quiz = QuizLogs(quiz_id=quiz_id, uid=uid, mode=mode, num_of_q=num_of_q, max_points=max_points, created_at=created_at, updated_at=updated_at)
+        quiz = QuizLogs(quiz_id=quiz_id, uid=uid, mode=mode, created_at=created_at, updated_at=created_at)
         session.add(quiz)
         session.commit()
         session.close()
@@ -347,7 +347,7 @@ class DB:
         points = question_data['points']
         created_at = dt.now()
         session = self.Session()
-        question = QuestionLogs(question_id=question_id, quiz_id=quiz_id, question=q, q_num=q_num, points=points, created_at=created_at, updated_at=updated_at)
+        question = QuestionLogs(question_id=question_id, quiz_id=quiz_id, question=q, q_num=q_num, points=points, created_at=created_at, updated_at=created_at)
         session.add(question)
         session.commit()
         session.close()
