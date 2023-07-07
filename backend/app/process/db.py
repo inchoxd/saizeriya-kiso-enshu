@@ -54,7 +54,7 @@ class ResultQuizLogs(Base):
     incorrects_num = Column(Integer)                            # 不正解の数
     accuracy = Column(Integer)                                  # 正答率
     crr_points = Column(Integer)                                # 正解したポイントの合計
-    incrr_points = Columns(Integer)                             # 不正解したポイントの合計
+    incrr_points = Column(Integer)                             # 不正解したポイントの合計
     ttl_points = Column(Integer)                                # 獲得したポイントの合計点数
     created_at = Column(DateTime)                               # 作成日時
     updated_at = Column(DateTime)                               # 更新日時
