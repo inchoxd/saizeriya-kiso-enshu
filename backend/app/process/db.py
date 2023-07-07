@@ -1,7 +1,7 @@
 import os
 import json
 from dotenv import load_dotenv
-from uuid import uuid4
+from uuid import uuid4 as uuid
 
 from sqlalchemy import create_engine, func
 from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey, Boolean
@@ -325,6 +325,67 @@ class DB:
 
 
     ##################################################
+    # 出題・回答登録，取得
+    ##################################################
+    def create_quiz(self, uid:str, mode:int, num_of_q:int, max_points:int) -> str:
+        quiz_id = str(uuid())
+        created_at = dt.now()
+        session = self.Session()
+        quiz = QuizLogs(quiz_id=quiz_id, uid=uid, mode=mode, num_of_q=num_of_q, max_points=max_points, created_at=created_at, updated_at=updated_at)
+        session.add(quiz)
+        session.commit()
+        session.close()
+
+        return quiz_id
+
+
+    def create_question(self, quiz_data:dict) -> str:
+        question_id = str(uuid())
+        quiz_id = quiz_data['quiz_id']
+        q = quiz_data['question']
+        q_num = quiz_data['q_num']
+        points = quiz_data['points']
+        created_at = dt.now()
+        session = self.Session()
+        question = QuestionLogs(question_id=question_id, quiz_id=quiz_id, question=q, q_num=q_num, points=points, created_at=created_at, updated_at=updated_at)
+        session.add(question)
+        session.commit()
+        session.close()
+
+        return question_id
+
+
+    def get_quiz_info(self, quiz_id:str) -> dict:
+        session = self.Session()
+        try:
+            quiz_data = session.query(ItemsCalSolt).filter_by(quiz_id=quiz_id).one()
+        except NoResultFound:
+            return {}
+        finally:
+            quiz_info = {
+                    quiz_id = quiz_data.quiz_id,
+                    uid = quiz_data.uid,
+                    mode = quiz_data.mode,
+                    num_of_q = quiz_data.num_of_q,
+                    max_points = quiz_data.max_points
+                    }
+
+        return quiz_info
+
+
+    def get_question_info_from_quiz_id(self, quiz_id:str) -> list:
+        session = self.Session()
+        try:
+            question_data = session.query(QuestionLogs).filter_by(quiz_id=quiz_id).all()
+        except NoResultFound:
+            return {}
+        finally:
+            question_info = [ {'question_id':data.question_id, 'question':data.question, 'q_num':data.q_num, 'points':data.points} for data in question_data ]
+            
+            return question_info
+
+
+    ##################################################
     # 各種データ取得
     ##################################################
     def _get_item_sub_info(self, sub_info_flg:dict) -> dict:
@@ -365,7 +426,7 @@ class DB:
 
         except NoResultFound:
             return {}
-        else:
+        finally:
             sub_info = {
                     'cal':cal,
                     'solt_content':solt_content,
@@ -392,7 +453,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             sub_data = self._get_item_sub_info(sub_data_flg)
             item_info = {
                     'menu_id':base_data.menu_id,
@@ -466,7 +527,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             li_menu_id = [ page_data.menu_id for page_data in pages_data ]
 
         return li_menu_id
@@ -483,7 +544,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             li_menu_id = [ page_data.menu_id for page_data in pages_data ]
 
         return li_menu_id
@@ -500,7 +561,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             li_menu_id = [ menu_data[menu_id] for menu_data in menus_data ]
 
         return li_menu_id
@@ -517,7 +578,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             li_menu_id = [ categ_data.menu_id for categ_data in categs_data ]
 
             return li_menu_id
@@ -534,7 +595,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             li_menu_id = [ categ_data.menu_id for categ_data in categs_data ]
 
             return li_menu_id
@@ -551,7 +612,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             li_categs = [ categ_name.name for categ_name in categs_data ]
 
             return li_categs
@@ -568,7 +629,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             categ_info = {
                     'name':categ_data.name,
                     'note':categ_data.note
@@ -588,7 +649,7 @@ class DB:
             session.close()
         except NoResultFound:
             return {}
-        else:
+        finally:
             categs_info = []
             for categ_data in categs_data:
                 categ_info = {
