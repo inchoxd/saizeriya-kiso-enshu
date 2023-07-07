@@ -96,7 +96,7 @@ class Proc:
         pass
 
 
-    def gen_questions(self, mode:int, li_q_data:list, num_of_q:int) -> list:
+    def gen_questions(self, quiz_id:str, mode:int, li_q_data:list, num_of_q:int) -> list:
         if mode == 0:
             li_menu_id = self.get_some_menu_id_from_categ(li_q_data)
         elif mode == 1:
@@ -124,14 +124,16 @@ class Proc:
             li_ans_mid = random.sample(tmp_li_ans_mid, 3)
             li_ans_mid.insert(random.randrange(4), q)
             answers = [ self.get_item_info(li_ans_mid[ans_num])['menu_name'] for ans_num in range(len(li_ans_mid)) ]
-            created_at = dt.now()
-            question_id = str(uuid())
             question = {
-                    'question_id':question_id,
+                    'quiz_id':quiz_id,
                     'question':q,
+                    'q_num':q_num,
                     'points':self.get_item_info(questions[q_num])['price'],
-                    'answers':answers
                     }
+            question_id = self.db.create_question(question)
+            question.pop('quiz_id')
+            question['question_id'] = question_id
+            question['answers'] = answers
             quiz_data.append(question)
             tmp_li_ans_mid.clear()
             li_ans_mid.clear()
@@ -139,7 +141,7 @@ class Proc:
         return quiz_data
 
 
-    def gen_quiz(self, mode:int, categs:list=[], pages:list=[], num_of_q:int=0) -> dict:
+    def gen_quiz(self, mode:int, uid:str="guest", categs:list=[], pages:list=[], num_of_q:int=0) -> dict:
         """
         モードに応じてクイズを生成します．
         カテゴリーやページは複数選択可能です．
@@ -155,9 +157,10 @@ class Proc:
             num_of_q = len(questions)
 
         max_points = sum([ question_data['points'] for question_data in questions ])
+        quiz_id = self.db.create_quiz(uid, mode, num_of_q, max_points) 
 
         quiz_data = {
-                'quiz_id':None,
+                'quiz_id':quiz_id,
                 'mode':0,
                 'num_of_q':num_of_q,
                 'questions':questions
