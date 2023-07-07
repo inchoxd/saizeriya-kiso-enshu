@@ -339,12 +339,12 @@ class DB:
         return quiz_id
 
 
-    def create_question(self, quiz_data:dict) -> str:
+    def create_question(self, question_data:dict) -> str:
         question_id = str(uuid())
-        quiz_id = quiz_data['quiz_id']
-        q = quiz_data['question']
-        q_num = quiz_data['q_num']
-        points = quiz_data['points']
+        quiz_id = question_data['quiz_id']
+        q = question_data['question']
+        q_num = question_data['q_num']
+        points = question_data['points']
         created_at = dt.now()
         session = self.Session()
         question = QuestionLogs(question_id=question_id, quiz_id=quiz_id, question=q, q_num=q_num, points=points, created_at=created_at, updated_at=updated_at)
