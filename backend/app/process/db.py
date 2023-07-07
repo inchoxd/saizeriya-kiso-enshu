@@ -43,7 +43,7 @@ class QuizLogs(Base):
 
 
 class ResultQuizLogs(Base):
-    __tablename__ = 'result_quiz_logs'
+    __tablename__ = 'resulqtlogs'
     __table_args__=({"mysql_charset": "utf8mb4"})
 
     result_id = Column(String(36),primary_key=True)             # 結果識別ID
@@ -353,6 +353,10 @@ class DB:
         session.close()
 
         return question_id
+
+
+    def create_answer(self, answer_data:dict) -> str:
+        return answer_id
 
 
     def get_quiz_info(self, quiz_id:str) -> dict:
