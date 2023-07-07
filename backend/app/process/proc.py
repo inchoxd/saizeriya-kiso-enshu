@@ -92,11 +92,11 @@ class Proc:
         return categ_info
 
 
-    def register_quiz_logs(self, session_id, mode, uid=""):
+    def _register_quiz_logs(self, session_id, mode, uid=""):
         pass
 
 
-    def _gen_questions(self, mode:int, li_q_data:list, num_of_q:int) -> list:
+    def gen_questions(self, mode:int, li_q_data:list, num_of_q:int) -> list:
         if mode == 0:
             li_menu_id = self.get_some_menu_id_from_categ(li_q_data)
         elif mode == 1:
@@ -145,9 +145,9 @@ class Proc:
         カテゴリーやページは複数選択可能です．
         """
         if mode == 0 and categs:
-            questions = self._gen_questions(mode, categs, num_of_q)
+            questions = self.gen_questions(mode, categs, num_of_q)
         elif mode == 1 and pages:
-            questions = self._gen_qiz_from_categ(mode, pages, num_of_q)
+            questions = self.gen_qiz_from_categ(mode, pages, num_of_q)
         else:
             return {}
         
