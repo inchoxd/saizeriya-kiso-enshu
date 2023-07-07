@@ -556,13 +556,13 @@ class DB:
         """
         session = self.Session()
         try:
-            menus_data = session.query(Items).filter_by(menu_name=menu_name).all()
+            menus_data = session.query(Items).filter(Items.menu_name.in_(li_name)).all()
             
             session.close()
         except NoResultFound:
             return {}
         finally:
-            li_menu_id = [ menu_data[menu_id] for menu_data in menus_data ]
+            li_menu_id = [ menu_data.menu_id for menu_data in menus_data ]
 
         return li_menu_id
 
