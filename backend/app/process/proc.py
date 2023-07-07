@@ -173,21 +173,64 @@ class Proc:
         return quiz_data
 
 
-    def _check_ans(self, ans_data:list) -> dict:
-        pass
+    def check_ans(self, quiz_id:str, ans_data:list) -> dict:
+        """
+        クイズの結果を集計します
+        """
+        q_info = self.db.get_question_info_from_quiz_id(quiz_id)
+        li_rst = []
+        ttl_points = 0
+        corrects = 0
+        incorrects = 0
+        for q_data in q_info:
+            q_mid = q_data['question']
+            q_points = q_data['points']
+            q_num = q_data['q_num']
+            ans_menu_name = ans_data[q_num]
+            ans_mid = self.db.get_menu_id_from_menu_name([ans_menu_name])[0]
+            if q_mid == ans_mid:
+                correct = True
+                points = q_points
+                correct_menu_name = ans_menu_name
+                tf_symb = '◯'
+                corrects += 1
+            else:
+                correct = False
+                points = -q_points
+                correct_menu_name = self.get_item_info(q_mid)['menu_name']
+                tf_symb = '×'
+                incorrects += 1
+
+            ttl_points += points
+            rst_ans = {
+                    'answer_id':None,
+                    'ans_menu_id':ans_mid,
+                    'ans_mid':ans_mid,
+                    'ans_menu_name':ans_menu_name,
+                    'correct':correct,
+                    'tf_symb':tf_symb,
+                    'correct_menu_name':correct_menu_name,
+                    'points':points
+                    }
+            li_rst.append(rst_ans)
+
+        rst = {
+                'result_id':None,
+                'quiz_id':quiz_id,
+                'corrects_num':corrects,
+                'incorrects_num':incorrects,
+                'ttl_points':ttl_points,
+                'ans_rst':li_rst
+                }
+
+        return rst
 
 
-    def register_result(self, quiz_id:str) -> dict:
+    def register_result(self, quiz_id:str, ans_data:list) -> dict:
         """
         回答を確認し，ポイントを集計します．
         回答したした結果を辞書で返却します．
         """
-        rst = {
-                'result_id':None,
-                'quiz_id':None,
-                'corrects_num':None,
-                'in_corrects_num':None,
-                'ttl_points':None
-                }
+        ans_rst = self.check_ans(quiz_id, ans_data)
 
         return rst
