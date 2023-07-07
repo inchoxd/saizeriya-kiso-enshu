@@ -384,7 +384,7 @@ class DB:
     def get_question_info_from_quiz_id(self, quiz_id:str) -> list:
         session = self.Session()
         try:
-            question_data = session.query(QuestionLogs).filter_by(quiz_id=quiz_id).all()
+            question_data = session.query(QuestionLogs).filter_by(quiz_id=quiz_id).order_by(QuestionLogs.q_num).all()
         except NoResultFound:
             return {}
         finally:
