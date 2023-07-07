@@ -363,11 +363,11 @@ class DB:
             return {}
         finally:
             quiz_info = {
-                    quiz_id = quiz_data.quiz_id,
-                    uid = quiz_data.uid,
-                    mode = quiz_data.mode,
-                    num_of_q = quiz_data.num_of_q,
-                    max_points = quiz_data.max_points
+                    'quiz_id':quiz_data.quiz_id,
+                    'uid':quiz_data.uid,
+                    'mode': quiz_data.mode,
+                    'num_of_q':quiz_data.num_of_q,
+                    'max_points':quiz_data.max_points
                     }
 
         return quiz_info
