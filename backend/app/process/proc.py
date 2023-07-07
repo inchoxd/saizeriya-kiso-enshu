@@ -146,18 +146,22 @@ class Proc:
         モードに応じてクイズを生成します．
         カテゴリーやページは複数選択可能です．
         """
+        if (mode == 0 or mode == 1) and (categs or pages):
+            quiz_id = self.db.create_quiz(uid, mode) 
+        else:
+            return {}
+
         if mode == 0 and categs:
-            questions = self.gen_questions(mode, categs, num_of_q)
+            questions = self.gen_questions(quiz_id, mode, categs, num_of_q)
         elif mode == 1 and pages:
-            questions = self.gen_qiz_from_categ(mode, pages, num_of_q)
+            questions = self.gen_qiz_from_categ(quiz_id, mode, pages, num_of_q)
         else:
             return {}
         
         if num_of_q > 1:
             num_of_q = len(questions)
 
-        max_points = sum([ question_data['points'] for question_data in questions ])
-        quiz_id = self.db.create_quiz(uid, mode, num_of_q, max_points) 
+        #max_points = sum([ question_data['points'] for question_data in questions ])
 
         quiz_data = {
                 'quiz_id':quiz_id,
