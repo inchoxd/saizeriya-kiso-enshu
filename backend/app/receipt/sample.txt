@@ -1,0 +1,20 @@
+﻿| ^^^結果伝票 |
+{width:6,11; border:none; align:right}
+| 日付| 2023/07/07|
+| 時刻| 23:52|
+{width:3,*,4,9; border:line}
+| No. | 品名 | 正誤 | 金額 |
+-
+|1. |カルボナーラ |○| 500|
+|2. |`ラムのラグーソース(スパゲッティ) |||
+||_たっぷりペコリーノチーズのポモドーロ |×| -500|
+|3. |スパゲッティアラビアータ |○| 400|
+-
+{width:14,9; border:line; align:right}
+-
+| 正答率 | 66%|
+-
+| ^^合計 | ^^900|
+{width:*; border:none;}
+
+| {code:https://receiptline.github.io/designer/; option:qrcode,3,L} |
