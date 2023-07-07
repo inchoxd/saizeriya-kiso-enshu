@@ -51,6 +51,8 @@ class ResultQuizLogs(Base):
     num_of_q = Column(Integer)                                  # 出題数
     max_points = Column(Integer)                                # 獲得できる最大のポイント
     corrects_num = Column(Integer)                              # 正解した数
+    incorrects_num = Column(Integer)                            # 不正解の数
+    rate = Column(Integer)                                      # 正答率
     ttl_points = Column(Integer)                                # 獲得したポイントの合計点数
     created_at = Column(DateTime)                               # 作成日時
     updated_at = Column(DateTime)                               # 更新日時
