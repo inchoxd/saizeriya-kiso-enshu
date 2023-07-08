@@ -254,3 +254,6 @@ class Proc:
         """
         result_idからクイズの結果を返却します．
         """
+        rst_info = self.db.load_result(result_id)
+
+        return rst_info
