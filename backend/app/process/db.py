@@ -360,7 +360,19 @@ class DB:
 
 
     def create_answer(self, answer_data:dict) -> str:
+        answer_id = str(uuid())
+        quiz_id = answer_data['quiz_id']
+        question_id = answer_data['question_id']
+        answer = answer_data['answer']
+        ans_num = answer_data['ans_num']
+        correct = answer_data['correct']
+        earned_points = answer_data['earned_points']
+        created_at = dt.now()
+        session = self.Session()
+        answer = AnswerLogs(answer_id=answer_id, quiz_id=quiz_id, question_id=question_id, answer=answer, ans_num=ans_num, corerct=correct, earned_points=earned_points, created_at=created_at, updated_at=created_at)
+
         return answer_id
+
 
 
     def get_quiz_info(self, quiz_id:str) -> dict:
