@@ -155,7 +155,7 @@ class Proc:
         if mode == 0 and categs:
             questions = self.gen_questions(quiz_id, mode, categs, num_of_q)
         elif mode == 1 and pages:
-            questions = self.gen_qiz_from_categ(quiz_id, mode, pages, num_of_q)
+            questions = self.gen_questions(quiz_id, mode, pages, num_of_q)
         else:
             return {}
         
