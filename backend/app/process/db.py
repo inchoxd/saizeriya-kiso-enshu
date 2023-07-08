@@ -371,8 +371,7 @@ class DB:
         earned_points = answer_data['earned_points']
         created_at = dt.now()
         session = self.Session()
-        answer = AnswerLogs(answer_id=answer_id, quiz_id=quiz_id, question_id=question_id, answer=answer, ans_num=ans_num, corerct=correct, earned_points=earned_points, created_at=created_at, updated_at=created_at)
-        question = QuestionLogs(question_id=question_id, quiz_id=quiz_id, question=q, q_num=q_num, points=points, created_at=created_at, updated_at=created_at)
+        answer = AnswerLogs(answer_id=answer_id, quiz_id=quiz_id, question_id=question_id, answer=answer, ans_num=ans_num, correct=correct, earned_points=earned_points, created_at=created_at, updated_at=created_at)
         session.add(answer)
         session.commit()
         session.close()
