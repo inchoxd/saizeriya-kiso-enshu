@@ -93,11 +93,10 @@ class Proc:
         return categ_info
 
 
-    def _register_quiz_logs(self, session_id, mode, uid=""):
-        pass
-
-
     def gen_questions(self, quiz_id:str, mode:int, li_q_data:list, num_of_q:int) -> list:
+        """
+        指定されたモードからクイズの生成を行います．
+        """
         if mode == 0:
             li_menu_id = self.get_some_menu_id_from_categ(li_q_data)
         elif mode == 1:
@@ -161,8 +160,6 @@ class Proc:
         
         if num_of_q > 1:
             num_of_q = len(questions)
-
-        #max_points = sum([ question_data['points'] for question_data in questions ])
 
         quiz_data = {
                 'quiz_id':quiz_id,
@@ -251,3 +248,9 @@ class Proc:
         ans_rst = self.check_ans(quiz_id, ans_data)
 
         return rst
+
+
+    def load_result(self, result_id:str) -> dict:
+        """
+        result_idからクイズの結果を返却します．
+        """
