@@ -1,0 +1,20 @@
+﻿| ^^^結果伝票 |
+{width:6,11; border:none; align:right}
+| 日付||
+| 時刻||
+{width:3,*,4,9; border:line}
+| No. | 品名 | 正誤 | 金額 |
+-
+-
+{width:14,9; border:line; align:right}
+-
+| 正解率 ||
+-
+| 正解小計 ||
+-
+| 不正解小計 ||
+-
+| ^^合計 ||
+{width:*; border:none;}
+
+| {code:https://saizekisoen.incho.tech/result?id=RSTID; option:qrcode,3,L} |
