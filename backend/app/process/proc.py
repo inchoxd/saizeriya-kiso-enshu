@@ -1,4 +1,5 @@
 import os
+import math
 import json
 import random
 from uuid import uuid4 as uuid
@@ -179,6 +180,9 @@ class Proc:
         """
         q_info = self.db.get_question_info_from_quiz_id(quiz_id)
         li_rst = []
+        max_points = 0
+        crr_points = 0
+        incrr_points = 0
         ttl_points = 0
         corrects = 0
         incorrects = 0
@@ -187,17 +191,20 @@ class Proc:
             q_mid = q_data['question']
             q_points = q_data['points']
             q_num = q_data['q_num']
+            max_points += q_points
             ans_menu_name = ans_data[q_num]
             ans_mid = self.db.get_menu_id_from_menu_name([ans_menu_name])[0]
             if q_mid == ans_mid:
                 correct = True
                 points = q_points
+                crr_points += points
                 correct_menu_name = ans_menu_name
                 tf_symb = '◯'
                 corrects += 1
             else:
                 correct = False
                 points = -q_points
+                incrr_points += points
                 correct_menu_name = self.get_item_info(q_mid)['menu_name']
                 tf_symb = '×'
                 incorrects += 1
@@ -220,13 +227,18 @@ class Proc:
             li_rst.append(rst_ans)
 
         rst = {
-                'result_id':None,
                 'quiz_id':quiz_id,
+                'num_of_q':len(li_rst),
+                'max_points':max_points,
                 'corrects_num':corrects,
                 'incorrects_num':incorrects,
+                'accuracy':math.ceil(corrects/len(li_rst)*100),
+                'crr_points':crr_points,
+                'incrr_points':incrr_points,
                 'ttl_points':ttl_points,
                 'ans_rst':li_rst
                 }
+        rst['result_id'] = self.db.create_resultqlogs(rst)
 
         return rst
 
