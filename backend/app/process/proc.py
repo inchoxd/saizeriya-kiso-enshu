@@ -183,6 +183,7 @@ class Proc:
         corrects = 0
         incorrects = 0
         for q_data in q_info:
+            q_id = q_data['question_id']
             q_mid = q_data['question']
             q_points = q_data['points']
             q_num = q_data['q_num']
@@ -203,15 +204,19 @@ class Proc:
 
             ttl_points += points
             rst_ans = {
-                    'answer_id':None,
+                    'quiz_id':quiz_id,
+                    'question_id':q_id,
                     'ans_menu_id':ans_mid,
-                    'ans_mid':ans_mid,
-                    'ans_menu_name':ans_menu_name,
+                    'answer':ans_mid,
+                    'ans_num':q_num,
                     'correct':correct,
+                    'earned_points':points,
                     'tf_symb':tf_symb,
                     'correct_menu_name':correct_menu_name,
                     'points':points
                     }
+            rst_ans['answer_id'] = self.db.create_answer(rst_ans)
+            rst_ans['ans_menu_name'] = ans_menu_name
             li_rst.append(rst_ans)
 
         rst = {
