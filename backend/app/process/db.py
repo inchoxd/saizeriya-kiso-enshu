@@ -72,6 +72,8 @@ class QuestionLogs(Base):
     created_at = Column(DateTime)                               # 作成日時
     updated_at = Column(DateTime)                               # 更新日時
 
+    r_answerlogs = relationship('AnswerLogs', backref='questionlogs')
+
 
 class AnswerLogs(Base):
     __tablename__ = 'answerlogs'
