@@ -431,7 +431,15 @@ class DB:
 
 
     def get_answer_info_from_quiz_id(self, quiz_id:str) -> list:
-        pass
+        session = self.Session()
+        try:
+            answer_data = session.query(AnswerLogs).filter_by(quiz_id=quiz_id).order_by(AnswerLogs.ans_num).all()
+        except NoResultFound:
+            return {}
+        finally:
+            answer_info = [ {'answer_id':data.answer_id, 'question_id':data.question_id, 'answer':data.answer, 'ans_num':data.ans_num, 'correct':data.correct, 'earned_points':data.earned_points, 'created_at':data.created_at} for data in answer_data ]
+            
+            return answer_info
 
 
     def load_result(self, result_id) -> dict:
@@ -441,17 +449,17 @@ class DB:
         except NoResultFound:
             return {}
         finally:
-            quiz_id = rst_data['quiz_id']
-            num_of_q = rst_data['num_of_q']
-            max_points = rst_data['max_points']
-            corrects_num = rst_data['corrects_num']
-            incorrects_num = rst_data['incorrects_num']
-            accuracy = rst_data['accuracy']
-            crr_points = rst_data['crr_points']
-            incrr_points = rst_data['incrr_points']
-            ttl_points = rst_data['ttl_points']
-            created_at = rst_data['created_at']
-            ans_info = self.db.get_answer_info_from_quiz_id(quiz_id)
+            quiz_id = rst_data.quiz_id
+            num_of_q = rst_data.num_of_q
+            max_points = rst_data.max_points
+            corrects_num = rst_data.corrects_num
+            incorrects_num = rst_data.incorrects_num
+            accuracy = rst_data.accuracy
+            crr_points = rst_data.crr_points
+            incrr_points = rst_data.incrr_points
+            ttl_points = rst_data.ttl_points
+            created_at = rst_data.created_at
+            ans_info = self.get_answer_info_from_quiz_id(quiz_id)
 
             rst_data = {
                     'quiz_id':quiz_id,
@@ -467,7 +475,7 @@ class DB:
                     'ans_info':ans_info
                     }
 
-            return rst
+            return rst_data
 
 
     ##################################################
