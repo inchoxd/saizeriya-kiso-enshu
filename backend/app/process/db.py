@@ -437,7 +437,7 @@ class DB:
         except NoResultFound:
             return {}
         finally:
-            answer_info = [ {'answer_id':data.answer_id, 'question_id':data.question_id, 'answer':data.answer, 'ans_num':data.ans_num, 'correct':data.correct, 'earned_points':data.earned_points, 'created_at':data.created_at} for data in answer_data ]
+            answer_info = [ {'answer_id':data.answer_id, 'question_id':data.question_id, 'answer':data.answer, 'ans_num':data.ans_num, 'correct':data.correct, 'tf_symb':'◯' if data.correct else '×', 'earned_points':data.earned_points, 'created_at':data.created_at} for data in answer_data ]
             
             return answer_info
 
