@@ -430,6 +430,46 @@ class DB:
             return question_info
 
 
+    def get_answer_info_from_quiz_id(self, quiz_id:str) -> list:
+        pass
+
+
+    def load_result(self, result_id) -> dict:
+        session = self.Session()
+        try:
+            rst_data = session.query(ResultQuizLogs).filter_by(result_id=result_id).one()
+        except NoResultFound:
+            return {}
+        finally:
+            quiz_id = rst_data['quiz_id']
+            num_of_q = rst_data['num_of_q']
+            max_points = rst_data['max_points']
+            corrects_num = rst_data['corrects_num']
+            incorrects_num = rst_data['incorrects_num']
+            accuracy = rst_data['accuracy']
+            crr_points = rst_data['crr_points']
+            incrr_points = rst_data['incrr_points']
+            ttl_points = rst_data['ttl_points']
+            created_at = rst_data['created_at']
+            ans_info = self.db.get_answer_info_from_quiz_id(quiz_id)
+
+            rst_data = {
+                    'quiz_id':quiz_id,
+                    'num_of_q':num_of_q,
+                    'max_points':max_points,
+                    'corrects_num':corrects_num,
+                    'incorrects_num':incorrects_num,
+                    'accuracy':accuracy,
+                    'crr_points':crr_points,
+                    'incrr_points':incrr_points,
+                    'ttl_points':ttl_points,
+                    'created_at':created_at,
+                    'ans_info':ans_info
+                    }
+
+            return rst
+
+
     ##################################################
     # 各種データ取得
     ##################################################
