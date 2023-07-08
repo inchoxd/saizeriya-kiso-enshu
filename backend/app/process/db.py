@@ -379,6 +379,27 @@ class DB:
         return answer_id
 
 
+    def create_resultqlogs(self, result_data:dict) -> str:
+        result_id = str(uuid())
+        quiz_id = result_data['quiz_id']
+        num_of_q = result_data['num_of_q']
+        max_points = result_data['max_points']
+        corrects_num = result_data['corrects_num']
+        incorrects_num = result_data['incorrects_num']
+        accuracy = result_data['accuracy']
+        crr_points = result_data['crr_points']
+        incrr_points = result_data['incrr_points']
+        ttl_points = result_data['ttl_points']
+        created_at = dt.now()
+        session = self.Session()
+        answer = ResultQuizLogs(result_id=result_id, quiz_id=quiz_id, num_of_q=num_of_q, max_points=max_points, corrects_num=corrects_num, incorrects_num=incorrects_num, accuracy=accuracy, crr_points=crr_points, incrr_points=incrr_points, ttl_points=ttl_points, created_at=created_at, updated_at=created_at)
+        session.add(answer)
+        session.commit()
+        session.close()
+
+        return result_id
+
+
     def get_quiz_info(self, quiz_id:str) -> dict:
         session = self.Session()
         try:
